@@ -1,3 +1,89 @@
-body{
+body {
     background-color: bisque;
+}
+
+.calculator-container {
+    display: grid;
+    border: solid;
+    width: 300px;
+    height: 400px;
+    margin: auto;
+    background-color: brown;
+    grid-template-rows: 50px auto;
+}
+
+.display {
+    border: solid;
+    background-color: antiquewhite;
+    max-height: 50px;
+    font-size: 18px;
+    font-weight: 1000;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.keys-container {
+    display: grid;
+    border: solid;
+    background-color: rgb(44, 43, 42);
+    grid-template-columns: 80% 20%;
+
+}
+
+.number-keys {
+    display: grid;
+    border: 10px black;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    text-align: center;
+    align-items: center;
+}
+
+.number {
+    height: 100%;
+    font-size: 32px;
+    border-radius: 2px;
+    border: 2px solid #000;
+}
+
+.operator-keys {
+    display: grid;
+    width: 100%;
+
+}
+
+.operators {
+    background-color: #d6d5d4;
+    color: #000000;
+    font-size: 32px;
+    font-style: normal;
+    text-decoration: none;
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 2px;
+    display: grid;
+    box-shadow: 1px 1px 1px 0px #2D2D2D;
+    width: inherit;
+    height: inherit;
+
+}
+
+.number:hover {
+    background-color: #53c056;
+}
+
+.number:active {
+    background-color: #3e8e41;
+    box-shadow: 0 1px #eb0000;
+    transform: translate(1px);
+}
+
+.operators:hover {
+    background-color: #53c056
+}
+
+.operators:active {
+    background-color: #3e8e41;
+    box-shadow: 0 1px #eb0000;
+    transform: translate(1px);
 }
