@@ -19,12 +19,6 @@ function divide(a, b){
     return a / b;
 }
 
-
-//Define variables to perform operation 
-let a; //first number
-let b; //second number
-let ope; //operator
-
 //Operate with two numbers based in case selected
 function operate(a, ope, b){
     //Parse string a/b to Number type
@@ -49,70 +43,12 @@ function operate(a, ope, b){
     }
 }
 
-
-function extractNumbersOperand(){
-   
-
-    //Loop thru each character
-    let i = 0;
-    newText =[]; //New array for numbers and ope.
-    console.log(text.length)
-    while(i < text.length){    
-        //Find if characters are numbers or operands
-        if(/\d/g.test(text[i]) ||  /(\/|-|\+|\*)/g.test(text[i])){ 
-            //Check for negative number
-            if(i === 0 && text[0] === '-'){
-                let negNumb = text[0] + text[i+1];  
-                newText.push(negNumb); //Add negative number to array
-                i += 2; //Step over two indexes
-                continue;
-            }
-            //Create new array of numbers and operands
-            newText.push(text[i]);
-        }else{
-            //Break out of the loop if wrong input from user
-            console.log('Wrong input!!!  ----> ' + text[i]);
-            newText = [];  //Clear out array
-            break;
-        }
-        i++;
-    }
-
-    console.log('New array length of:  ' + newText.length)
-
-    //Separate numbers and operands 
-    i = 0;
-    let numbers = [];
-    ope = [];
-    while(i < newText.length){
-        //Even arrays indexes are numbers while odd are operands
-        if(!(i % 2)){ //True is even 0,2,4,6,8,...
-            numbers.push(newText[i])
-        }else{ //False is odd 1,3,5,...
-            ope.push(newText[i]);
-        }
-    
-        i++;
-    }
-    console.log("Numbers:  " + numbers);
-    // Numbers:  -2,3,5,1,5,4
-    console.log("Operands:  " + ope);
-
-    return numbers;
-}
-
-
-const clickedNumber = document.querySelectorAll('.number');
-document.addEventListener('click', display);
-let displayText;
-
 //Create a function to populate the display when btn clicked
 function display(){
-    
     //Get current element text
     displayText = document.getElementsByClassName('display')[0].innerText
     
-    while(displayText.length < 10){
+    while(displayText.length < 15){
         //Get button clicked value
         if(event.target.matches('.number')){
         var pressNumber = event.target.id;
@@ -125,4 +61,79 @@ function display(){
 }
 }
 
-// document.getElementById('display').innerText;
+//Define variables to perform operation 
+let a; //first number
+let b; //second number
+let ope; //operator
+let displayText; //Store display values
+
+//Event for numbers pressed
+document.addEventListener('click', display);
+
+//Event for main-operands pressed
+const operators = document.getElementsByClassName('main-operators');
+for(var i = 0; i < operators.length; i++){
+    operators[i].addEventListener('click', operandKey);
+}
+
+//Create clear even for button
+const clear = document.getElementById('clear');
+clear.addEventListener('click', () => {
+    return document.getElementById('display').innerText = '';
+})
+
+//Function for when operands are pressed
+function operandKey(){
+    displayText = document.getElementById('display').innerText;
+    ope = event.target.id;
+    //Convert displayText to array
+    const myArray = displayText.split('');
+    //Get last char on array
+    const lastChar = myArray[myArray.length-1];
+    
+    //If last char is number, enter to update
+    if(lastChar.match(/[0-9]/g)){
+        //add ope and update display
+        document.getElementById('display').innerText = displayText + ope;
+    }else if(lastChar.match(/[^0-9]/g)){
+        //if different ope delete existing operand and update with this.id
+        myArray.pop(); //Delete last char
+        myArray.push(ope); //Add ope to array
+        //Update display
+        document.getElementById('display').innerText = displayText = myArray.join('');
+    }
+return 0;  
+}
+
+
+
+
+
+
+
+
+// //Check for negative number
+// if(i === 0 && text[0] === '-'){
+//     let negNumb = text[0] + text[i+1];  
+//     newText.push(negNumb); //Add negative number to array
+//     i += 2; //Step over two indexes
+//     continue;
+// }
+
+ //Separate numbers and operands 
+//  i = 0;
+//  let numbers = [];
+//  ope = [];
+//  while(i < newText.length){
+//      //Even arrays indexes are numbers while odd are operands
+//      if(!(i % 2)){ //True is even 0,2,4,6,8,...
+//          numbers.push(newText[i])
+//      }else{ //False is odd 1,3,5,...
+//          ope.push(newText[i]);
+//      }
+ 
+//      i++;
+//  }
+//  console.log("Numbers:  " + numbers);
+//  // Numbers:  -2,3,5,1,5,4
+//  console.log("Operands:  " + ope);
