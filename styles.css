@@ -16,7 +16,7 @@ body {
     border: solid;
     background-color: antiquewhite;
     max-height: 50px;
-    font-size: 18px;
+    font-size: 34px;
     font-weight: 1000;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
     text-align: right;
@@ -39,7 +39,7 @@ body {
     align-items: center;
 }
 
-.number {
+.number,.negative-symbol {
     height: 100%;
     font-size: 32px;
     border-radius: 2px;
@@ -66,6 +66,16 @@ body {
     width: inherit;
     height: inherit;
 
+}
+
+.negative-symbol:hover{
+    background-color: #c78e24;
+}
+
+.negative-symbol:active{
+    background-color: #3e8e41;
+    box-shadow: 0 1px #eb0000;
+    transform: translate(1px);
 }
 
 .number:hover {
