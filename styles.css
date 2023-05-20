@@ -1,137 +1,128 @@
-body {
+@media only screen and (max-width: 480px) {
+  body {
     background-color: rgb(250, 190, 116);
-}
+  }
 
-.calculator-container {
-    display: grid;
+  .calculator-container {
+    display: flex;
+    flex-direction: column;
     border: solid;
-    width: 300px;
-    height: 400px;
+    width: 350px;
+    min-height: auto;
     margin: auto;
     grid-template-rows: 50px auto;
+    background-color: blue;
+  }
 }
 
-.display {
-    border: solid;
-    background-color: antiquewhite;
-    height: auto;
-    font-size: 24px;
-    font-weight: 1000;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
-    text-align: right;
-    padding-right: 5px;
-    text-overflow: ellipsis;
-    background-color: rgb(150, 247, 5);
+.display-container {
+  display: grid;
+  border: solid;
+  background-color: antiquewhite;
+  min-height: 90px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-align: right;
+  padding-right: 5px;
+  background-color: rgb(150, 247, 5);
+}
+
+.options-container {
+  display: grid;
+  border: solid;
+  text-align: center;
+  grid-template-columns: 25% 25% 25% 25%;
+  background-color: gray;
+}
+.options-container > div {
+  height: 100%;
+  font-size: 42px;
+  border-radius: 8px;
+  border: 4px solid blue;
+  font-weight: bold;
 }
 
 .keys-container {
-    display: grid;
-    border: solid;
-    grid-template-columns: 80% 20%;
-    height: auto;
-    background-color: blue;
+  display: grid;
+  border: solid;
+  min-height: 400px;
+  background-color: blue;
+  grid-template-columns: 75% 25%;
 }
-
 .number-keys {
-    display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
-    text-align: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  text-align: center;
+  align-items: center;
 }
 
-.number,.negative-symbol {
-    height: 100%;
-    font-size: 42px;
-    border-radius: 8px;
-    border: 4px solid blue;
-    font-weight: bold;
+.number,
+.negative-symbol {
+  height: 100%;
+  font-size: 42px;
+  border-radius: 8px;
+  border: 4px solid blue;
+  font-weight: bold;
 }
 
 .operator-keys {
-    display: grid;
-    width: 100%;
-    background-color: #f80000;
-
+  display: grid;
+  width: 100%;
+  background-color: #f80000;
+  grid-template-rows: 17.5% 17.5% 17.5% 17.5% 30%;
 }
 
 .operators {
-    background-color: orange;
-    border-color: #f80000;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 900;
-    text-decoration: none;
-    align-items: center;
-    border: 2px solid #fc0303;
-    border-radius: 8px;
-    display: grid;
-    box-shadow: 1px 1px 1px 0px #3e00f8;
-    width: inherit;
-    height: inherit;
-
+  background-color: orange;
+  border-color: #f80000;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 900;
+  text-decoration: none;
+  align-items: center;
+  border: 2px solid #fc0303;
+  border-radius: 8px;
+  display: grid;
+  box-shadow: 1px 1px 1px 0px #3e00f8;
+  width: inherit;
 }
 
-.negative-symbol:hover{
-    background-color: #c78e24;
+.negative-symbol:hover {
+  background-color: #c78e24;
 }
 
-.negative-symbol:active{
-    background-color: #3e8e41;
-    box-shadow: 0 1px #eb0000;
-    transform: translate(1px);
+.negative-symbol:active {
+  background-color: #3e8e41;
+  box-shadow: 0 1px #eb0000;
+  transform: translate(1px);
 }
 
 .number:hover {
-    background-color: #e9ef28;
+  background-color: #e9ef28;
 }
 
 .number:active {
-    background-color: #3e8e41;
-    box-shadow: 0 1px #eb0000;
-    transform: translate(1px);
+  background-color: #3e8e41;
+  box-shadow: 0 1px #eb0000;
+  transform: translate(1px);
 }
 
 .operators:hover {
-    background-color: #0675F9;
+  background-color: #0675f9;
 }
 
 .operators:active {
-    background-color: #3e8e41;
-    box-shadow: 0 1px #ff0000;
-    transform: translate(1px);
+  background-color: #3e8e41;
+  box-shadow: 0 1px #ff0000;
+  transform: translate(1px);
 }
 
-#clear{
-    color: #eb0000;
-    background-color: orange;
+#clear {
+  color: #eb0000;
+  background-color: orange;
 }
-#clear:hover{
-    background-color: #06e9f9;
+#clear:hover {
+  background-color: #06e9f9;
 }
-
-
-@media only screen and (max-width: 480px) {
-    /* your CSS here */
-
-    .calculator-container {
-        display: grid;
-        border: solid;
-        width: 250px;
-        height: auto;
-        margin: auto;
-        grid-template-rows: 50px auto;
-    }
-    
-    .display {
-        border: solid;
-        background-color: antiquewhite;
-        height: auto;
-        font-size: 18px;
-        font-weight: 1000;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
-        text-align: right;
-        padding-right: 4px;
-        text-overflow: ellipsis;
-        background-color: rgb(150, 247, 5);
-    }
-    }

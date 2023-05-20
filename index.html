@@ -12,8 +12,18 @@
 
 <body>
     <div class="calculator-container">
-        <div class="display" id="display"></div>
+        <div class="display-container" id="display">
+            <div id="display-input">display-input</div>
+            <div id="display-answer">display-answer</div>
+        </div>
+        <div class="options-container">
+            <div>DEL</div>
+            <div>%</div>
+            <div>-/+</div>
+            <div>CE</div>
+        </div>
         <div class="keys-container">
+            
             <div class="number-keys">
                <button class="number" id="1">1</button>
                <button class="number" id="2">2</button>
@@ -27,12 +37,10 @@
                <button class="negative-symbol" id="negative">(-)</button>
                <button class="number" id="0">0</button>
                <!-- <div class="test" id="test">Display Variables</div> -->
-               <button class="number"></button>
-
+               <button class="number" id="dot">.</button>
                 
             </div>
             <div class="operator-keys">
-                <button type="" class="operators " id="clear">C</button>
                 <button class="operators main-operators" id="/">/</button>
                 <button class="operators main-operators" id="*">*</button>
                 <button class="operators main-operators" id="-">-</button>
