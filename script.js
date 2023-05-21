@@ -44,35 +44,35 @@ function operate(a, ope, b) {
   }
 }
 
-//Create a function to populate the display when btn clicked numbers
+//Create a function to populate the display-container when btn clicked numbers
 //Extract all the numbers into an array 1,2,3,4,...
-function display() {
+function display-container() {
   //Get current element text
-  displayText = document.getElementById("display").innerText;
-  displayArray = displayText.split("");
-  lastChar = displayArray[displayArray.length - 1];
+  display-containerText = document.getElementById("display-container").innerText;
+  display-containerArray = display-containerText.split("");
+  lastChar = display-containerArray[display-containerArray.length - 1];
 
-  while (displayText.length < 12) {
+  while (display-containerText.length < 12) {
     //Get button clicked value
 
     if (event.target.matches(".number")) {
       const pressNumber = event.target.id;
 
-      //If first number on display has a prefix of (-) is a negative, join the first two indexes then, producing a single negative number
-      if (displayArray.length === 1 && lastChar === "-") {
+      //If first number on display-container has a prefix of (-) is a negative, join the first two indexes then, producing a single negative number
+      if (display-containerArray.length === 1 && lastChar === "-") {
         const negNumb = lastChar + pressNumber;
-        document.getElementById("display").innerText = negNumb;
+        document.getElementById("display-container").innerText = negNumb;
         numbersArray.push(negNumb);
-      } else if (displayArray.length > 0 && lastChar.match(/[0-9]/g)) {
+      } else if (display-containerArray.length > 0 && lastChar.match(/[0-9]/g)) {
         //if last index is number
         a = numbersArray[numbersArray.length - 1] + pressNumber; //Combine last index with pressNumber
         numbersArray.pop(); //Remove last index
         numbersArray.push(a); //Add combine numbers
       } else numbersArray.push(pressNumber); //Update array storing numbers
 
-      //Update display
-      displayText = document.getElementById("display").innerText =
-        displayText + pressNumber;
+      //Update display-container
+      display-containerText = document.getElementById("display-container").innerText =
+        display-containerText + pressNumber;
 
       break;
     }
@@ -82,31 +82,31 @@ function display() {
 
 //Function for when operands are pressed
 function operandKey() {
-  displayText = document.getElementById("display").innerText;
-  displayArray = displayText.split("");
+  display-containerText = document.getElementById("display-container").innerText;
+  display-containerArray = display-containerText.split("");
 
   //Logic to disable the *,-,+,/ if first char is (-)
   if (
-    displayArray.length != 0 && //If display length equal zero is NOT true AND...
-    (displayArray[0] != "-" || displayArray.length > 1) //if display length is NOT (-) OR length > 1
+    display-containerArray.length != 0 && //If display-container length equal zero is NOT true AND...
+    (display-containerArray[0] != "-" || display-containerArray.length > 1) //if display-container length is NOT (-) OR length > 1
   ) {
     ope = event.target.id;
     //Get last char on array
-    lastChar = displayArray[displayArray.length - 1];
+    lastChar = display-containerArray[display-containerArray.length - 1];
 
     //Extract all operands into an array +,*,-,/,...
     //If last char is number, enter to update
-    if (lastChar.match(/[0-9]/g) && displayArray.length >= 1) {
-      //add ope and update display
-      document.getElementById("display").innerText = displayText + ope;
+    if (lastChar.match(/[0-9]/g) && display-containerArray.length >= 1) {
+      //add ope and update display-container
+      document.getElementById("display-container").innerText = display-containerText + ope;
       opeArray.push(ope); //Update array storing operands
     } else if (lastChar.match(/[^0-9]/g)) {
       //if different ope delete existing operand and update with this.id
-      displayArray.pop(); //Delete last char
-      displayArray.push(ope); //Add ope to array
-      //Update display
-      document.getElementById("display").innerText = displayText =
-        displayArray.join("");
+      display-containerArray.pop(); //Delete last char
+      display-containerArray.push(ope); //Add ope to array
+      //Update display-container
+      document.getElementById("display-container").innerText = display-containerText =
+        display-containerArray.join("");
       opeArray.push(ope); //Update array storing operands
     }
   }
@@ -118,15 +118,15 @@ let a; //first number
 let b; //second number
 let lastChar;
 let ope; //operator
-let displayText = document.getElementById("display").innerText; //Store display values
-let displayArray = displayText.split(""); //Create array for displayText
+let display-containerText = document.getElementById("display-container").innerText; //Store display-container values
+let display-containerArray = display-containerText.split(""); //Create array for display-containerText
 let numbersArray = []; //Stores all numbers
 let opeArray = []; //Stores all operands
 
 //Event for numbers pressed
 const btnNumbers = document.getElementsByClassName("number");
 for (let i = 0; i < btnNumbers.length; i++) {
-  btnNumbers[i].addEventListener("click", display);
+  btnNumbers[i].addEventListener("click", display-container);
 }
 
 //Event for main-operands pressed
@@ -139,11 +139,11 @@ for (let i = 0; i < btnOperators.length; i++) {
 const btnClear = document.getElementById("clear");
 btnClear.addEventListener("click", clearStorage);
 
-//Create btn for negative numbers only for empty display
+//Create btn for negative numbers only for empty display-container
 const btnNegative = document.getElementById("negative");
 btnNegative.addEventListener("click", (e) => {
-  if (displayText.length === 0)
-    return (displayText = document.getElementById("display").innerText = "-");
+  if (display-containerText.length === 0)
+    return (display-containerText = document.getElementById("display-container").innerText = "-");
 });
 
 //Press = equal
@@ -154,8 +154,8 @@ function clearStorage() {
   //Empty this arrays
   numbersArray = [];
   opeArray = [];
-  displayArray = [];
-  return (displayText = document.getElementById("display").innerText = "");
+  display-containerArray = [];
+  return (display-containerText = document.getElementById("display-container").innerText = "");
 }
 
 function calculate() {
@@ -178,7 +178,7 @@ function calculate() {
   }
   clearStorage();
   numbersArray.push(result);
-  document.getElementById("display").innerText = result;
+  document.getElementById("display-container").innerText = result;
   return 0;
 }
 
@@ -187,6 +187,6 @@ const btnTest = document.getElementById("test");
 btnTest.addEventListener("click", (e) => {
   console.log("Na: " + a);
   console.log("Ope: " + ope);
-  const displayArray = displayText.split("");
-  console.log("Nb: " + displayArray);
+  const display-containerArray = display-containerText.split("");
+  console.log("Nb: " + display-containerArray);
 });

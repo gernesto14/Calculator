@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Default Design */
+.calculator-container {
+  /* Default Styling */
+  margin: 30px auto;
+  font-size: 22px;
+  min-width: 300px;
+  height: 500px;
+  /* background-color: darkseagreen;
+    color: black; */
+}
+
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+  .calculator-container {
+    /* background-color: #63c971;
+        color: #fff; */
+  }
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .calculator-container {
+    width: 400px;
+    height: 400px;
+    /* background-color: orange;
+        color: black; */
+  }
+}
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 380px) and (orientation: portrait) {
+  .calculator-container {
+    width: 200px;
+    height: 200px;
+    /* background-color: red;
+        color: #fff; */
+  }
+}
+
+/* For Mobile Landscape View */
+@media screen and (max-device-width: 380px) and (orientation: landscape) {
+  .calculator-container {
+    width: 360px;
+    height: 200px;
+    /* background-color: cyan;
+        color: black; */
+  }
+}
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen and (max-device-width: 380px) {
+  .calculator-container {
+    width: 360px;
+    height: 200px;
+    /* background-color: chartreuse;
+        color: black; */
+  }
+}
