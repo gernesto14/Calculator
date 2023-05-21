@@ -4,6 +4,8 @@ Web calculator
 Project source instructions:
 https://www.theodinproject.com/lessons/foundations-calculator
 
+Project Deployment Live: https://gernesto14.github.io/Calculator/
+
 Project: Calculator
 Foundations Course
 Introduction
