@@ -39,27 +39,27 @@ body {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background-color: orange;
+  background-color: rgb(250, 168, 16);
 }
 
 button {
   font-size: 34px;
   font-weight: bolder;
-  border: 5px inset orange;
-  background-color: rgb(74, 143, 143);
+  border: 5px inset rgba(227, 151, 9, 0.574);
+  background-color: rgb(255, 169, 58);
   border-radius: 15px;
   padding: 4px;
   background-image:
     linear-gradient(
       to top left,
-      rgb(193, 115, 115) 5%, #f48a21 90% 10%
+      rgb(171, 111, 27) 5%, #f48a21 90% 10%
     );
     outline-offset: px;
 }
 
 button:active{
   background-color: yellow;
-  transform: translateY(2px);
-  box-shadow:-1px -2px 5px 1px rgb(64, 0, 0) ;
+  transform: scale(1.1,1.1);
+  box-shadow:-1px -2px 5px 2px  #432608
 }
 button:hover {background-color: #3e8e41}
