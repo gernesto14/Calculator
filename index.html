@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="normalize" href="normalize.css">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="normalize" href="normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="media-for-all-devices.css" />
+    <meta
+      name="description"
+      content="CSS Media Query for all devices
+                    like mobile, tablet, desktop etc."
+    />
     <title>Calculator</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="calculator-container">
-        <div class="display-container" id="display">
-            <div id="display-input">display-input</div>
-            <div id="display-answer">display-answer</div>
-        </div>
-        <div class="options-container">
-            <div>DEL</div>
-            <div>%</div>
-            <div>-/+</div>
-            <div>CE</div>
-        </div>
-        <div class="keys-container">
-            
-            <div class="number-keys">
-               <button class="number" id="1">1</button>
-               <button class="number" id="2">2</button>
-               <button class="number" id="3">3</button>
-               <button class="number" id="4">4</button>
-               <button class="number" id="5">5</button>
-               <button class="number" id="6">6</button>
-               <button class="number" id="7">7</button>
-               <button class="number" id="8">8</button>
-               <button class="number" id="9">9</button>
-               <button class="negative-symbol" id="negative">(-)</button>
-               <button class="number" id="0">0</button>
-               <!-- <div class="test" id="test">Display Variables</div> -->
-               <button class="number" id="dot">.</button>
-                
-            </div>
-            <div class="operator-keys">
-                <button class="operators main-operators" id="/">/</button>
-                <button class="operators main-operators" id="*">*</button>
-                <button class="operators main-operators" id="-">-</button>
-                <button class="operators main-operators" id="+">+</button>
-                <button class="operators" id="=">=</button>
+      <div class="display-container" id="display">
+        <div id="display-input">0123456789</div>
+        <div id="display-answer"><span>Answer</span>0123456789</div>
+      </div>
 
+      <div class="keys-container">
+        <button>DEL</button>
+        <button>AC</button>
+        <button>%</button>
 
+        <button class="operators main-operators" id="*">*</button>
+        <button class="number" id="1">1</button>
+        <button class="number" id="2">2</button>
+        <button class="number" id="3">3</button>
+        <button class="operators main-operators" id="/">/</button>
+        <button class="number" id="4">4</button>
+        <button class="number" id="5">5</button>
+        <button class="number" id="6">6</button>
+        <button class="operators main-operators" id="-">-</button>
+        <button class="number" id="7">7</button>
+        <button class="number" id="8">8</button>
+        <button class="number" id="9">9</button>
+        <button class="operators main-operators" id="+">+</button>
+        <button class="negative-symbol" id="negative">(-)</button>
+        <button class="number" id="0">0</button>
+        <button class="number" id="dot">.</button>
 
-            </div>
-        </div>
-
+        
+        
+        <button class="operators" id="=">=</button>
+      </div>
     </div>
 
-
-
-
     <script src="./script.js"></script>
-</body>
-
+  </body>
 </html>
