@@ -1,5 +1,8 @@
+* {
+  font-family: "Roboto Slab", serif;
+}
 body {
-  background-color: rgb(250, 190, 116);
+  background-color: rgb(248, 206, 155);
   padding: 10px;
 }
 
@@ -9,6 +12,8 @@ body {
   display: flex;
   flex-direction: column;
   grid-template-rows: 20% 80%;
+  background-color: rgb(248, 161, 0);
+  border-radius: 10px;
 }
 
 .display-container {
@@ -17,16 +22,19 @@ body {
   text-align: right;
   padding-right: 5px;
   border: solid black;
-  background-color: greenyellow;
-  height: 70px;
+  border-radius: 8px;
+  background-color: #11fe01;
+  min-height: 75px;
 }
 
 #display-input {
+  min-height: 32px;
   font-size: 24px;
   font-weight: bold;
 }
 
 #display-answer {
+  min-height: 48x;
   font-size: 32px;
   font-weight: bolder;
 }
@@ -35,7 +43,8 @@ body {
 }
 
 .keys-container {
-  padding-top: 5px;
+  padding: 3px 2px;
+  border-radius: 10px;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -43,23 +52,32 @@ body {
 }
 
 button {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: bolder;
+  text-shadow: rgb(0, 0, 0) 0px 0px 80px;
+  color: #001b30;
+  margin: 1px;
   border: 5px inset rgba(227, 151, 9, 0.574);
   background-color: rgb(255, 169, 58);
   border-radius: 15px;
   padding: 4px;
-  background-image:
-    linear-gradient(
-      to top left,
-      rgb(171, 111, 27) 5%, #f48a21 90% 10%
-    );
-    outline-offset: px;
+  background-image: linear-gradient(
+    to top left,
+    rgb(171, 111, 27) 5%,
+    #f48a21 90% 10%
+  );
+  outline-offset: 2px;
 }
 
-button:active{
-  background-color: yellow;
-  transform: scale(1.1,1.1);
-  box-shadow:-1px -2px 5px 2px  #432608
+button:active {
+  transform: scale(1.2, 1.2);
+  box-shadow: -1px -2px 5px 2px #301b05;
+  transition: 0.01s;
+  opacity: .85;
+  border: 5px inset rgb(248, 173, 33);
 }
-button:hover {background-color: #3e8e41}
+button:hover {
+  color: red;
+  transform: scale(1.1);
+  transition: 0.25s;
+}

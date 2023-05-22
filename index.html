@@ -7,6 +7,12 @@
     <link rel="normalize" href="normalize.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="media-for-all-devices.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <meta
       name="description"
       content="CSS Media Query for all devices
@@ -18,20 +24,19 @@
   <body>
     <div class="calculator-container">
       <div class="display-container" id="display">
-        <div id="display-input">0123456789</div>
-        <div id="display-answer"><span>Answer</span>0123456789</div>
+        <div id="display-input"></div>
+        <div id="display-answer"></div>
       </div>
 
       <div class="keys-container">
         <button>DEL</button>
-        <button>AC</button>
+        <button class="clear" id="clear">AC</button>
         <button>%</button>
-
         <button class="operators main-operators" id="*">*</button>
         <button class="number" id="1">1</button>
         <button class="number" id="2">2</button>
         <button class="number" id="3">3</button>
-        <button class="operators main-operators" id="/">/</button>
+        <button class="operators main-operators" id="/">÷</button>
         <button class="number" id="4">4</button>
         <button class="number" id="5">5</button>
         <button class="number" id="6">6</button>
@@ -42,10 +47,8 @@
         <button class="operators main-operators" id="+">+</button>
         <button class="negative-symbol" id="negative">(-)</button>
         <button class="number" id="0">0</button>
-        <button class="number" id="dot">.</button>
+        <button class="number dot" id=".">.</button>
 
-        
-        
         <button class="operators" id="=">=</button>
       </div>
     </div>
