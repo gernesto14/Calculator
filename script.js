@@ -112,55 +112,34 @@ function calculate() {
   numbersArray.push(result);
   clearStorage();
   document.getElementById("display-answer").innerText = result;
+
+  if (
+    document.getElementById("display-answer").innerText === "undefined" ||
+    document.getElementById("display-answer").innerText === "undefined" ||
+    document.getElementById("display-answer").innerText === "NaN"
+  ) {
+    document.getElementById("display-answer").innerText = "";
+  }
   return 0;
 }
 
 //Clear display
 function clearStorage() {
   //Empty this arrays
-  //numbersArray = [];
   opeArray = [];
   displayInputArray = [];
   displayInputText = document.getElementById("display-input").innerText = "";
 
+  if (
+    document.getElementById("display-answer").innerText === "undefined" ||
+    document.getElementById("display-answer").innerText === "undefined" ||
+    document.getElementById("display-answer").innerText === "NaN"
+  ) {
+    document.getElementById("display-answer").innerText = "";
+  }
+
   return 0;
 }
-
-//-----------All my global variables--------------------------------------------
-
-//Define variables to perform operation
-let a; //first number
-let b; //second number
-let answerDisplay = document.getElementById("display-answer").innerText;
-let ope; //operator
-let displayInputText = document.getElementById("display-input").innerText; //Store displayInput values
-let displayInputArray = displayInputText.split(""); //Create array for displayInputText
-let numbersArray = []; //Stores all numbers
-let opeArray = []; //Stores all operands
-
-//--------------------All BUTTONS Events------------------------------------
-
-//Btn Event for numbers pressed
-const btnNumbers = document.getElementsByClassName("number");
-for (let i = 0; i < btnNumbers.length; i++) {
-  btnNumbers[i].addEventListener("click", clickNumbers);
-}
-
-//Btn Event for main-operands pressed
-const btnOperators = document.getElementsByClassName("main-operators");
-for (let i = 0; i < btnOperators.length; i++) {
-  btnOperators[i].addEventListener("click", operandKey);
-}
-
-//Btn Create clear button
-const btnClear = document.getElementById("clear");
-btnClear.addEventListener("click", clearStorage);
-
-//Btn Press = equal
-const btnEqual = document.getElementById("=");
-btnEqual.addEventListener("click", () => {
-  if (numbersArray.length > 1) calculate();
-});
 
 //Create a function to populate the displayInput when btn clicked numbers
 //Extract all the numbers into an array 1,2,3,4,...
@@ -210,3 +189,39 @@ function clickNumbers() {
   }
   return 0;
 }
+
+//-----------All my global variables--------------------------------------------
+
+//Define variables to perform operation
+let a; //first number
+let b; //second number
+let answerDisplay = document.getElementById("display-answer").innerText;
+let ope; //operator
+let displayInputText = document.getElementById("display-input").innerText; //Store displayInput values
+let displayInputArray = displayInputText.split(""); //Create array for displayInputText
+let numbersArray = []; //Stores all numbers
+let opeArray = []; //Stores all operands
+
+//--------------------All BUTTONS Events------------------------------------
+
+//Btn Event for numbers pressed
+const btnNumbers = document.getElementsByClassName("number");
+for (let i = 0; i < btnNumbers.length; i++) {
+  btnNumbers[i].addEventListener("click", clickNumbers);
+}
+
+//Btn Event for main-operands pressed
+const btnOperators = document.getElementsByClassName("main-operators");
+for (let i = 0; i < btnOperators.length; i++) {
+  btnOperators[i].addEventListener("click", operandKey);
+}
+
+//Btn Create clear button
+const btnClear = document.getElementById("clear");
+btnClear.addEventListener("click", clearStorage);
+
+//Btn Press = equal
+const btnEqual = document.getElementById("=");
+btnEqual.addEventListener("click", () => {
+  if (numbersArray.length > 1) calculate();
+});
