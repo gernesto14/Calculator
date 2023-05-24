@@ -44,59 +44,23 @@ function operate(a, ope, b) {
   }
 }
 
-//Create a function to populate the displayInput when btn clicked numbers
-//Extract all the numbers into an array 1,2,3,4,...
-function display() {
-  //Get current element text
-  displayInputText = document.getElementById("display-input").innerText;
-  displayInputArray = displayInputText.split("");
-  lastChar = lastCharacter();
-  lastNum = lastNumber();
-
-  console.log("Number Array: " + numbersArray);
-  console.log("Last Char: " + lastChar);
-  console.log("Last Number: " + lastNum);
-
-  while (displayInputText.length < 12) {
-    //Get button clicked value
-    const pressNumber = event.target.id;
-
-    if (event.target.matches(".number")) {
-      //If first number on displayInput has a prefix of (-) is a negative, join the first two indexes then, producing a single negative number
-      if (displayInputArray.length === 1 && lastChar === "-") {
-        const negNumb = lastChar + pressNumber;
-        document.getElementById("display-input").innerText = negNumb;
-        numbersArray.push(negNumb);
-      } else if (displayInputArray.length > 0 && /([0-9]||\.)/.test(lastChar)) {
-        //If last number in array matches a DOT
-        if (/\./.test(lastNum) && pressNumber == ".") break; //Break loop
-        //if last index is number
-        a = numbersArray[numbersArray.length - 1] + pressNumber; //Combine last index with pressNumber
-        numbersArray.pop(); //Remove last index
-        numbersArray.push(a); //Add combine numbers}
-      } else numbersArray.push(pressNumber); //Update array storing numbers
-
-      //Update displayInput
-      displayInputText = document.getElementById("display-input").innerText =
-        displayInputText + pressNumber;
-
-      break;
-    }
-    return 0;
-  }
-}
-
 //Function for when operands are pressed
 function operandKey() {
+  answerDisplay = document.getElementById("display-answer").innerText;
+  //Check answer in not empty
+  if (answerDisplay != "") {
+    document.getElementById("display-input").innerText = answerDisplay;
+  }
+
   displayInputText = document.getElementById("display-input").innerText;
   displayInputArray = displayInputText.split("");
+  ope = event.target.id;
 
   //Logic to disable the *,-,+,/ if first char is (-)
   if (
-    displayInputArray.length != 0 && //If displayInput length equal zero is NOT true AND...
+    displayInputArray.length != 0 && //If displayInput length eNOT zero AND...
     (displayInputArray[0] != "-" || displayInputArray.length > 1) //if displayInput length is NOT (-) OR length > 1
   ) {
-    ope = event.target.id;
     //Get last char on array
     lastChar = displayInputArray[displayInputArray.length - 1];
 
@@ -116,6 +80,10 @@ function operandKey() {
         displayInputArray.join("");
       opeArray.push(ope); //Update array storing operands
     }
+  } else {
+    //Update displayInput
+    document.getElementById("display-input").innerText = displayInputText + ope;
+    opeArray.push(ope); //Update array storing operands
   }
   return 0;
 }
@@ -123,6 +91,7 @@ function operandKey() {
 function calculate() {
   //Loop thru each array index, even indexes are numbers and odd for operands
   //Assign (a) to first index and result of previews operation, (b) for the following number in array
+  let result;
   let i = 0;
   while (i < opeArray.length) {
     a = numbersArray[0];
@@ -137,44 +106,35 @@ function calculate() {
 
     i++;
   }
-  clearStorage();
-  numbersArray.push(result);
-  document.getElementById("display-input").innerText = result;
-  document.getElementById("display-answer").innerText = result;
 
+  //Update numbersArray to result
+  numbersArray = [];
+  numbersArray.push(result);
+  clearStorage();
+  document.getElementById("display-answer").innerText = result;
   return 0;
 }
 
 //Clear display
 function clearStorage() {
   //Empty this arrays
-  numbersArray = [];
+  //numbersArray = [];
   opeArray = [];
   displayInputArray = [];
-  return (displayInputText = document.getElementById(
-    "display-input"
-  ).innerText =
-    "");
+  displayInputText = document.getElementById("display-input").innerText = "";
+
+  return 0;
 }
 
-//Get last character from displayInput
-function lastCharacter() {
-  return (lastChar = displayInputArray[displayInputArray.length - 1]);
-}
-function lastNumber() {
-  return numbersArray[numbersArray.length - 1];
-}
 //-----------All my global variables--------------------------------------------
 
 //Define variables to perform operation
 let a; //first number
 let b; //second number
-
+let answerDisplay = document.getElementById("display-answer").innerText;
 let ope; //operator
 let displayInputText = document.getElementById("display-input").innerText; //Store displayInput values
 let displayInputArray = displayInputText.split(""); //Create array for displayInputText
-let lastChar; //last character on displayInput
-let lastNum; //last numbersArray
 let numbersArray = []; //Stores all numbers
 let opeArray = []; //Stores all operands
 
@@ -183,7 +143,7 @@ let opeArray = []; //Stores all operands
 //Btn Event for numbers pressed
 const btnNumbers = document.getElementsByClassName("number");
 for (let i = 0; i < btnNumbers.length; i++) {
-  btnNumbers[i].addEventListener("click", display);
+  btnNumbers[i].addEventListener("click", clickNumbers);
 }
 
 //Btn Event for main-operands pressed
@@ -196,23 +156,57 @@ for (let i = 0; i < btnOperators.length; i++) {
 const btnClear = document.getElementById("clear");
 btnClear.addEventListener("click", clearStorage);
 
-//Btn Create btn for negative numbers only for empty displayInput
-const btnNegative = document.getElementById("negative");
-btnNegative.addEventListener("click", (e) => {
-  if (displayInputText.length === 0)
-    return (displayInputText = document.getElementById(
-      "display-input"
-    ).innerText =
-      "-");
-});
-
 //Btn Press = equal
 const btnEqual = document.getElementById("=");
-btnEqual.addEventListener("click", calculate);
+btnEqual.addEventListener("click", () => {
+  if (numbersArray.length > 1) calculate();
+});
 
+//Create a function to populate the displayInput when btn clicked numbers
+//Extract all the numbers into an array 1,2,3,4,...
+function clickNumbers() {
+  //Get current element text
+  displayInputText = document.getElementById("display-input").innerText;
+  displayInputArray = displayInputText.split("");
+  //Get last character from displayInput
+  const lastChar = displayInputArray[displayInputArray.length - 1];
+  //Get last number from numbersArray
+  const lastNum = numbersArray[numbersArray.length - 1];
+  let swap;
+  const pressNumber = event.target.id;
 
-// Doing some test
-const str = [56, "hsk"];
-const abc = str[0];
-const result = String(abc).match(/[0-9]/g);
-console.log(result); // true
+  //Check display length less than n and event matches class="number"
+  while (displayInputText.length < 20 && event.target.matches(".number")) {
+    //Check display is empty
+    if (lastChar === undefined) {
+      numbersArray.push(pressNumber);
+    } //Check display first char is (-)
+    else if (lastChar === "-" && displayInputArray.length === 1) {
+      const negNumb = lastChar + pressNumber;
+      numbersArray.push(negNumb);
+    } //Check for DOT entered previously
+    else if (pressNumber === ".") {
+      const dot = lastNum.matchAll(/\./g);
+      if (dot >= 1) {
+        break;
+      } else {
+        swap = lastNum + pressNumber;
+        numbersArray.pop();
+        numbersArray.push(swap);
+      }
+    } else if (lastChar.match(/\/|\*|\-|\+/g)) {
+      numbersArray.push(pressNumber);
+    } else {
+      swap = lastNum + pressNumber;
+      numbersArray.pop();
+      numbersArray.push(swap);
+    }
+
+    //Update displayInput
+    displayInputText = document.getElementById("display-input").innerText =
+      displayInputText + pressNumber;
+
+    break;
+  }
+  return 0;
+}
