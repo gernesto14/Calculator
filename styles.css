@@ -60,7 +60,7 @@ button {
   border: 5px inset rgba(227, 151, 9, 0.574);
   background-color: rgb(255, 169, 58);
   border-radius: 15px;
-  padding: 4px;
+  padding: 0px;
   background-image: linear-gradient(
     to top left,
     rgb(171, 111, 27) 5%,
@@ -73,7 +73,7 @@ button:active {
   transform: scale(1.2, 1.2);
   box-shadow: -1px -2px 5px 2px #301b05;
   transition: 0.01s;
-  opacity: .85;
+  opacity: 0.85;
   border: 5px inset rgb(248, 173, 33);
 }
 button:hover {
