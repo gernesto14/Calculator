@@ -47,25 +47,18 @@ function operate(a, ope, b) {
 //Function for when operands are pressed
 function operandKey() {
   answerDisplay = document.getElementById("display-answer").innerText;
-  //Check answer in not empty
-  if (answerDisplay != "") {
-    document.getElementById("display-input").innerText = answerDisplay;
-  }
-
   displayInputText = document.getElementById("display-input").innerText;
   displayInputArray = displayInputText.split("");
   ope = event.target.id;
-  answerDisplay = document.getElementById("display-answer").innerText;
+  lastChar = displayInputArray[displayInputArray.length - 1];
 
-  //If answer not empty AND lastChar is (-)
-
+  //Check first nchar is (-)
   //Logic to disable the *,-,+,/ if first char is (-)
   if (
     (answerDisplay.length != 0 && displayInputArray[0] != "-") ||
     (displayInputArray.length != 0 && //If displayInput length NOT zero AND...
       (displayInputArray[0] != "-" || displayInputArray.length > 1)) //if displayInput length is NOT (-) OR length > 1
   ) {
-    //Get last char on array
     lastChar = displayInputArray[displayInputArray.length - 1];
 
     //Extract all operands into an array +,*,-,/,...
@@ -111,20 +104,10 @@ function calculate() {
 
     i++;
   }
-
-  //Update numbersArray to result
-  numbersArray = [];
-  numbersArray.push(result);
+  answer = result;
   clearStorage();
   document.getElementById("display-answer").innerText = result;
 
-  if (
-    document.getElementById("display-answer").innerText === "undefined" ||
-    document.getElementById("display-answer").innerText === "undefined" ||
-    document.getElementById("display-answer").innerText === "NaN"
-  ) {
-    document.getElementById("display-answer").innerText = "";
-  }
   return 0;
 }
 
@@ -133,15 +116,10 @@ function clearStorage() {
   //Empty this arrays
   opeArray = [];
   displayInputArray = [];
-  displayInputText = document.getElementById("display-input").innerText = "";
+  numbersArray = [];
 
-  if (
-    document.getElementById("display-answer").innerText === "undefined" ||
-    document.getElementById("display-answer").innerText === "undefined" ||
-    document.getElementById("display-answer").innerText === "NaN"
-  ) {
-    document.getElementById("display-answer").innerText = "";
-  }
+  document.getElementById("display-answer").innerText = "";
+  document.getElementById("display-input").innerText = "";
 
   return 0;
 }
@@ -160,16 +138,6 @@ function clickNumbers() {
   let swap;
   const pressNumber = event.target.id;
 
-  //Check if user wants to perform a total new operation
-  if (
-    answerDisplay.match(/[0-9]/g) &&
-    lastChar === undefined &&
-    pressNumber !== "-"
-  ) {
-    document.getElementById("display-answer").innerText = "";
-    numbersArray = [];
-  }
-
   //Check display length less than n and event matches class="number"
   while (displayInputText.length < 20 && event.target.matches(".number")) {
     //Check display is empty
@@ -178,25 +146,21 @@ function clickNumbers() {
     } //Check display first char is (-)
     else if (lastChar === "-" && displayInputArray.length === 1) {
       let negNumb;
-      //Check for answer display and user entering new operation
-      if (answerDisplay.match(/[0-9]/g)) {
-        negNumb = lastChar + pressNumber;
-        const newNum = Number(answerDisplay) + Number(negNumb);
-        //Clear numbers array
-        numbersArray = [];
-        numbersArray.push(newNum);
-        document.getElementById("display-input").innerText = "";
-        document.getElementById("display-answer").innerText = newNum;
-        break;
-      } //valid if answer display is empty
-      else {
-        negNumb = lastChar + pressNumber;
-        numbersArray.push(negNumb);
-      }
-    } //Check for DOT entered previously
+      negNumb = lastChar + pressNumber;
+      numbersArray.pop();
+      numbersArray.push(negNumb);
+    } //Check for duplicating (-)
+    else if (pressNumber === "-" && displayInputArray.length > 1) {
+      opeArray.push(pressNumber);
+      //Update displayInput
+      displayInputText = document.getElementById("display-input").innerText =
+        displayInputText + pressNumber;
+      break;
+    }
+    //Check for DOT entered previously
     else if (pressNumber === ".") {
-      const dot = lastNum.matchAll(/\./g);
-      if (dot >= 1) {
+      // Check for floating number
+      if (lastNum % 1) {
         break;
       } else {
         swap = lastNum + pressNumber;
@@ -231,6 +195,7 @@ let displayInputText = document.getElementById("display-input").innerText; //Sto
 let displayInputArray = displayInputText.split(""); //Create array for displayInputText
 let numbersArray = []; //Stores all numbers
 let opeArray = []; //Stores all operands
+let answer; //Stores answer
 
 //--------------------All BUTTONS Events------------------------------------
 
@@ -255,4 +220,14 @@ btnClear.addEventListener("click", clearStorage);
 const btnEqual = document.getElementById("=");
 btnEqual.addEventListener("click", () => {
   if (numbersArray.length > 1) calculate();
+});
+
+//Btn ANS (answer)
+const btnAnswer = document.getElementById("ans");
+btnAnswer.addEventListener("click", () => {
+  console.log("ANSwer");
+  displayInputText = document.getElementById("display-input").innerText;
+  numbersArray.push(answer);
+  document.getElementById("display-input").innerText =
+    displayInputText + answer;
 });
