@@ -118,7 +118,6 @@ function clearStorage() {
   displayInputArray = [];
   numbersArray = [];
 
-  document.getElementById("display-answer").innerText = "";
   document.getElementById("display-input").innerText = "";
 
   return 0;
@@ -197,6 +196,13 @@ let numbersArray = []; //Stores all numbers
 let opeArray = []; //Stores all operands
 let answer; //Stores answer
 
+// ------------------------Date Display----------------------------------------
+
+let dt = new Date();
+$(".clock").text(dt.toLocaleDateString());
+$(".clock ").css("text-align", "center");
+$(".clock ").css("font-size", "28px");
+
 //--------------------All BUTTONS Events------------------------------------
 
 //Btn Event for numbers pressed
@@ -225,9 +231,10 @@ btnEqual.addEventListener("click", () => {
 //Btn ANS (answer)
 const btnAnswer = document.getElementById("ans");
 btnAnswer.addEventListener("click", () => {
-  console.log("ANSwer");
   displayInputText = document.getElementById("display-input").innerText;
-  numbersArray.push(answer);
-  document.getElementById("display-input").innerText =
-    displayInputText + answer;
+  if (displayInputText != answer) {
+    numbersArray.push(answer);
+    document.getElementById("display-input").innerText =
+      displayInputText + answer;
+  }
 });

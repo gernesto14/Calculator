@@ -13,24 +13,22 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap"
       rel="stylesheet"
     />
-    <meta
-      name="description"
-      content="Simple online calculator"
-    />
+    <meta name="description" content="Simple online calculator" />
     <title>Calculator</title>
   </head>
 
   <body>
     <div class="calculator-container">
+      <div class="clock">clock</div>
       <div class="display-container" id="display">
         <div id="display-input"></div>
         <div id="display-answer"></div>
       </div>
 
       <div class="keys-container">
-        <button>DEL</button>
+        <button id="delete"></button>
         <button class="clear" id="clear">AC</button>
-        <button class = 'answer' id="ans">ANS</button>
+        <button class="answer" id="ans">ANS</button>
         <button class="operators main-operators" id="*">*</button>
         <button class="number" id="1">1</button>
         <button class="number" id="2">2</button>
@@ -51,7 +49,11 @@
         <button class="operators" id="=">=</button>
       </div>
     </div>
-
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+      integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+      crossorigin="anonymous"
+    ></script>
     <script src="./script.js"></script>
   </body>
 </html>
