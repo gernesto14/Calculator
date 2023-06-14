@@ -199,9 +199,9 @@ let answer; //Stores answer
 // ------------------------Date Display----------------------------------------
 
 let dt = new Date();
-$(".clock").text(dt.toLocaleDateString());
-$(".clock ").css("text-align", "center");
-$(".clock ").css("font-size", "28px");
+$(".date").text(dt.toLocaleDateString());
+$(".date ").css("text-align", "center");
+$(".date ").css("font-size", "28px");
 
 //--------------------All BUTTONS Events------------------------------------
 
