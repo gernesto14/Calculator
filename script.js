@@ -271,8 +271,6 @@ $("#delete").click((e) => {
       } // For secondary index with one digit just pop()
       else {
         secondaryArray.pop();
-        // glue back primary index to numbersArray
-        numbersArray.push(secondaryArray);
       }
     } // Array with one index on numbersArray use pop()
     else {
