@@ -238,3 +238,61 @@ btnAnswer.addEventListener("click", () => {
       displayInputText + answer;
   }
 });
+
+//Btn Delete
+$("#delete").click((e) => {
+  e.preventDefault();
+  let displayInputText = document.getElementById("display-input").innerText; //Store displayInput values
+  let displayInputArray = displayInputText.split(""); //Create array for displayInputText
+  //Get las char from display
+  let lastChar = displayInputArray[displayInputArray.length - 1];
+  //Check if is number or symbol
+  //If number
+  if (lastChar.match(/[0-9]/g)) {
+    // Note: for numbers use primary and secondary array/index
+    // get last primary index and pop
+    // Check array is > 1
+    let primaryIndex;
+    let secondaryArray;
+    if (numbersArray.length > 1) {
+      // Get primary index (last index of primary array) and pop last index
+      primaryIndex = numbersArray.slice(-1);
+      numbersArray.pop();
+      // get last secondary index and pop
+      let secondaryArray = primaryIndex.toString().split("");
+      // Check for secondary index is > 1
+      if (secondaryArray.length > 1) {
+        secondaryArray.pop();
+        // glue back secondary index
+        secondaryArray = secondaryArray.join("");
+        secondaryArray = parseInt(secondaryArray);
+        // glue back primary index to numbersArray
+        numbersArray.push(secondaryArray);
+      } // For secondary index with one digit just pop()
+      else {
+        secondaryArray.pop();
+        // glue back primary index to numbersArray
+        numbersArray.push(secondaryArray);
+      }
+    } // Array with one index on numbersArray use pop()
+    else {
+      //Get primary index array
+      primaryIndex = numbersArray.slice(-1);
+      numbersArray.pop();
+      // get last secondary index and pop
+      secondaryArray = primaryIndex.toString().split("");
+      secondaryArray.pop();
+      // glue back primary index to numbersArray
+      numbersArray.push(secondaryArray);
+    }
+  } //If is a symbol
+  else if (lastChar.match(/[^0-9]/g)) {
+    opeArray.pop();
+  }
+
+  //Get last Char from display-input
+  displayInputArray.pop();
+  //Update display-input element
+  displayInputText = document.getElementById("display-input").innerText =
+    displayInputArray.join("");
+});
